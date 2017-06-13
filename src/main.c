@@ -14,15 +14,14 @@
 int main(int argc, char** argv)
 {
 
-	int n,m;
-	int Dflag;
-	char *nombreArchivo = (char*)malloc(sizeof(char) * 100);
+	int m;
+	char *archivo_entrada = (char*)malloc(sizeof(char) * 100);
+	char *archivo_salida = (char*)malloc(sizeof(char) * 100);
 
 	/*  Realizo el get opt de los valores de entrada hechos por la consola */
-	call_getopt(argc, argv, &tamanoTablero, &Dflag, &nombreArchivo);
+	call_getopt(argc, argv, &m, &archivo_entrada, &archivo_salida);
 
-	/* inicio ciertas variables globales, como el arreglo de los guerreros */
-	
+	printf("numero de marcos: %d\nnombre archivo de entrada: %s\nnombre archivo de salida: %s\n", m,archivo_entrada,archivo_salida);
 
 	return 0;
 }

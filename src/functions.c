@@ -1,38 +1,38 @@
 #include "functions.h"
 
-void call_getopt(int argc, char** argv, int *n, int *d, char **nombreArchivo){
-	int c, hijos;
-	char *Ivalue, *Nvalue, *Dvalue;
+void call_getopt(int argc, char** argv, int *m, char **archivo_entrada, char **archivo_salida){
+	int c;
+	char *m_value, *entrada_value, *salida_value;
 
 
 	//Obtener parametros.
 	opterr = 0;
 
-	if(argc <= 2){
-		printf("Se deben ingresar opciones (uso: -I <nombre archivo de entrada> -N <ancho del tablero> -D)\n");
+	if(argc <= 6){
+		printf("Se deben ingresar opciones (uso: -m <numero de marcos> -e <nombre archivo entrada> -o <nombre archivo salida>)\n");
 		exit(1) ;
 	}
 
-	while((c = getopt(argc, argv, "I:N:D:")) != -1){
+	while((c = getopt(argc, argv, "m:e:o:")) != -1){
 		switch (c) {
-			case 'I':
-				Ivalue = optarg;
+			case 'm':
+				m_value = optarg;
 				break;
-			case 'N':
-				Nvalue = optarg;
+			case 'e':
+				entrada_value = optarg;
 				break;
-			case 'D':
-				Dvalue = optarg;
+			case 'o':
+				salida_value = optarg;
 				break;
 			case '?':
-				if(optopt == 'I'){
-					fprintf(stderr, "Opcion -I requiere un argumento.\n");
+				if(optopt == 'm'){
+					fprintf(stderr, "Opcion -m requiere un argumento.\n");
 				}
-				else if(optopt == 'N'){
-					fprintf(stderr,"Opcion -N requiere un argumento\n");
+				else if(optopt == 'e'){
+					fprintf(stderr,"Opcion -e requiere un argumento\n");
 				}
-				else if(optopt == 'D'){
-					fprintf(stderr,"Opcion -D requiere un argumento\n");
+				else if(optopt == 'o'){
+					fprintf(stderr,"Opcion -o requiere un argumento\n");
 				}
 				else if (isprint(optopt)) {
 					fprintf(stderr, "Opcion -%c desconocida.\n", optopt);
@@ -47,20 +47,16 @@ void call_getopt(int argc, char** argv, int *n, int *d, char **nombreArchivo){
 	}
 
 	//Procesar parametros.
-	if(!isInt(Nvalue)){
-		printf("El parametro ingresado para el tamano de la tabla no es valido\n");
+	if(!isInt(m_value)){
+		printf("El parametro ingresado para el numero de marcos no es valido\n");
 		exit(1);
 	}
 
-	if(!isInt(Dvalue)){
-		printf("El parametro ingresado para el debug no es valido\n");
-		exit(1);
-	}
 
 	//retorno de parametros por referencia.
-	*n = atoi(Nvalue);
-	*nombreArchivo = Ivalue;
-	*d = atoi(Dvalue);
+	*m = atoi(m_value);
+	*archivo_entrada = entrada_value;
+	*archivo_salida = salida_value;
 }
 
 int isInt(char *number){

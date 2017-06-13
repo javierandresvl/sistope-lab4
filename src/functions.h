@@ -20,7 +20,7 @@
    parametros ingresados por la terminal.
    @parametros ...
 */
-void call_getopt(int argc, char** argv, int *n, int *d, char **nombreArchivo);
+void call_getopt(int argc, char** argv, int *m, char **archivo_entrada, char **archivo_salida);
 
 /*
     Funcion que verifica si un string representa un numero o no, entrega 0 si es
