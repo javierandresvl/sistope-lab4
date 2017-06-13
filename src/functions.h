@@ -8,7 +8,12 @@
 #include <time.h>
 
 //////// --ESTRUCTURAS-- ///////
-
+struct celda{
+    int dato;
+    int final;  /* valor 1 para indicar que el nodo es el final de la lista */
+    struct celda *sgte;
+};
+typedef struct celda lista;
 
 //////// -- VAR. GLOBALES -- ///////
 
@@ -16,9 +21,9 @@
 //////// --FUNCIONES-- ////////
 
 /*
-   Procedimiento que hace la llamada a getopt para obtener las opciones y
-   parametros ingresados por la terminal.
-   @parametros ...
+    Procedimiento que hace la llamada a getopt para obtener las opciones y
+    parametros ingresados por la terminal.
+    @parametros ...
 */
 void call_getopt(int argc, char** argv, int *m, char **archivo_entrada, char **archivo_salida);
 
@@ -30,8 +35,30 @@ void call_getopt(int argc, char** argv, int *m, char **archivo_entrada, char **a
 */
 int isInt(char *number);
 
+/*
 
+*/
+lista *crear();
 
+/*
+
+*/
+lista *insertar_nodo(lista *L);
+
+/*
+
+*/
+int largo_lista(lista *L);
+
+/*
+
+*/
+lista *insertar_dato(int x, int p, lista *L);
+
+/*
+
+*/
+void mostrar(lista *L);
 
 #endif
 
